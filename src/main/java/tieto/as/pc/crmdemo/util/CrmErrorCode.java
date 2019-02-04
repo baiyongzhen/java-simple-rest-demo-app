@@ -1,9 +1,12 @@
 package tieto.as.pc.crmdemo.util;
 
+/**
+ * CRM error codes.
+ */
 @SuppressWarnings("unused")
 public enum CrmErrorCode {
 
-    // Simple Server application errors 100-
+    // CRM application errors 100-
     EMAIL_ALREADY_EXISTS(100),
 
     // Server errors 500-

@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.context.annotation.ComponentScan;
@@ -21,7 +20,6 @@ import tieto.as.pc.crmdemo.webserver.Server;
 
 import java.util.HashMap;
 
-import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 
@@ -53,7 +51,7 @@ public class ServerTest {
 
         expectedResult.put("info", "Try /customer/<number>");
         // We need to remove the stupid backslashes which JSONObject hard codes.
-        String expectedResultJson = new JSONObject(expectedResult).toString().replace("\\","");
+        String expectedResultJson = new JSONObject(expectedResult).toString().replace("\\", "");
         MockHttpServletRequestBuilder builder = MockMvcRequestBuilders
                 .get("/info")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -66,7 +64,6 @@ public class ServerTest {
         logger.trace("Content: " + mvcResult.getResponse().getContentAsString());
         logger.debug(CrmConsts.LOG_EXIT);
     }
-
 
 
     @Test

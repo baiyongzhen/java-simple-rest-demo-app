@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * The type Customer failed response.
  */
-public class CustomerFailedResponseImpl implements  Response {
+public class CustomerFailedResponseImpl implements Response {
     private final Map<String, Object> response = new HashMap<>();
 
     private CustomerFailedResponseImpl(String msg) {

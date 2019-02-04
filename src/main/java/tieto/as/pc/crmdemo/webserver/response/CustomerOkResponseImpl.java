@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * The type Customer ok response.
  */
-public class CustomerOkResponseImpl implements Response{
+public class CustomerOkResponseImpl implements Response {
     private final Map<String, Object> response = new HashMap<>();
 
 

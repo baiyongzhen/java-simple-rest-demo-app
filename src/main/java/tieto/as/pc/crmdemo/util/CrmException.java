@@ -2,7 +2,7 @@ package tieto.as.pc.crmdemo.util;
 
 
 /**
- * The type Crm exception.
+ * The type CRM exception.
  */
 @SuppressWarnings("unused")
 public class CrmException extends RuntimeException {
@@ -13,7 +13,7 @@ public class CrmException extends RuntimeException {
 
 
     /**
-     * Instantiates a new Simple Server exception.
+     * Instantiates a new CRM exception.
      *
      * @param errorCode the error code
      */
@@ -24,7 +24,7 @@ public class CrmException extends RuntimeException {
 
 
     /**
-     * Instantiates a new Simple Server exception.
+     * Instantiates a new CRM exception.
      *
      * @param message   the message
      * @param cause     the cause
@@ -37,7 +37,7 @@ public class CrmException extends RuntimeException {
 
 
     /**
-     * Instantiates a new Simple Server exception.
+     * Instantiates a new CRM exception.
      *
      * @param message   the message
      * @param errorCode the error code
@@ -49,7 +49,7 @@ public class CrmException extends RuntimeException {
 
 
     /**
-     * Instantiates a new Simple Server exception.
+     * Instantiates a new CRM exception.
      *
      * @param cause     the cause
      * @param errorCode the error code

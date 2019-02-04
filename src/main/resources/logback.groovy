@@ -13,7 +13,7 @@ appender("STDOUT", ConsoleAppender) {
 }
 
 logFilePath = "logs"
-logFileName = "simple-server"
+logFileName = "crm"
 
 appender("FILE", RollingFileAppender) {
     file = "${logFilePath}/${logFileName}.log"

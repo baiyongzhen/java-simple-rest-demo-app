@@ -11,10 +11,10 @@
     </appender>
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/simple-server-test.log</file>
+        <file>logs/crm-test.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- daily rollover -->
-            <fileNamePattern>logs/simple-server-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>logs/crm-%d{yyyy-MM-dd}.log</fileNamePattern>
             <!-- keep 5 days' worth of history capped at 1MB total size -->
             <maxHistory>5</maxHistory>
             <totalSizeCap>1KB</totalSizeCap>

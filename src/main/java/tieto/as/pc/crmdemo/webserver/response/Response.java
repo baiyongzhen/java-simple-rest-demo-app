@@ -3,7 +3,7 @@ package tieto.as.pc.crmdemo.webserver.response;
 import java.util.Map;
 
 /**
- * The interface Simple Server response.
+ * The interface CRM response.
  */
 public interface Response {
 

@@ -5,6 +5,9 @@ import tieto.as.pc.crmdemo.util.CrmException;
 
 import java.util.Map;
 
+/**
+ * The interface CRM db.
+ */
 public interface CrmDb {
 
 
@@ -38,7 +41,7 @@ public interface CrmDb {
     /**
      * Gets customer by id.
      *
-     * @param id  Customer id
+     * @param id Customer id
      * @return Customer if found, null if not found (+ possible SSException)
      * @throws CrmException if failure
      */
@@ -48,7 +51,7 @@ public interface CrmDb {
     /**
      * Gets customer by email
      *
-     * @param email  Customer email
+     * @param email Customer email
      * @return Customer if found, null if not found (+ possible SSException)
      * @throws CrmException if failure
      */

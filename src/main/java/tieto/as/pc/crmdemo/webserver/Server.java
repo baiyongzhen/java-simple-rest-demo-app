@@ -1,22 +1,21 @@
 package tieto.as.pc.crmdemo.webserver;
 
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicLong;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tieto.as.pc.crmdemo.domain.CrmDb;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import tieto.as.pc.crmdemo.domain.Customer;
+import tieto.as.pc.crmdemo.util.CrmConsts;
 import tieto.as.pc.crmdemo.webserver.response.CustomerFailedResponseImpl;
 import tieto.as.pc.crmdemo.webserver.response.CustomerOkResponseImpl;
-import tieto.as.pc.crmdemo.util.CrmConsts;
 import tieto.as.pc.crmdemo.webserver.response.Response;
+
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicLong;
 
 
 @CrossOrigin
@@ -71,9 +70,9 @@ public class Server {
     }
 
     /**
-     * Gets product groups.
+     * Gets customer.
      *
-     * @return the product groups
+     * @return the customer (or error message)
      */
     @GetMapping(path = "/customer/{id}")
     public ResponseEntity<Map> getCustomer(@PathVariable("id") long id, @RequestHeader HttpHeaders headers) {

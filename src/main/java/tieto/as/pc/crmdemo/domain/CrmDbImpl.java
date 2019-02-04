@@ -2,14 +2,13 @@ package tieto.as.pc.crmdemo.domain;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.*;
-import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Service;
 import tieto.as.pc.crmdemo.util.CrmConsts;
 import tieto.as.pc.crmdemo.util.CrmErrorCode;
 import tieto.as.pc.crmdemo.util.CrmException;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Domain class.

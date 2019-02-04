@@ -7,7 +7,6 @@ import ch.qos.logback.core.ConsoleAppender
 import ch.qos.logback.core.rolling.RollingFileAppender
 import ch.qos.logback.core.rolling.TimeBasedRollingPolicy
 
-import static ch.qos.logback.classic.Level.DEBUG
 import static ch.qos.logback.classic.Level.TRACE
 import static ch.qos.logback.classic.Level.WARN
 
@@ -18,7 +17,7 @@ appender("STDOUT", ConsoleAppender) {
 }
 
 logFilePath = "logs"
-logFileName = "simple-server-test"
+logFileName = "crm-test"
 
 appender("FILE", RollingFileAppender) {
     file = "${logFilePath}/${logFileName}.log"

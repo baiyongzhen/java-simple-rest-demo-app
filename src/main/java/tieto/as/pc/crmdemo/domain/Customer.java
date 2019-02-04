@@ -1,6 +1,8 @@
 package tieto.as.pc.crmdemo.domain;
 
-
+/**
+ * The customer class.
+ */
 public class Customer {
 
     // We provide fields as public since there is no reason why they should
@@ -13,10 +15,10 @@ public class Customer {
     /**
      * Instantiates a new Customer.
      *
-     * @param id             the customer id
-     * @param email          the email
-     * @param firstName      the first name
-     * @param lastName       the last name
+     * @param id        the customer id
+     * @param email     the email
+     * @param firstName the first name
+     * @param lastName  the last name
      */
     public Customer(long id, String email, String firstName, String lastName) {
         this.id = id;

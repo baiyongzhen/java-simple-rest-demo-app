@@ -3,14 +3,14 @@
 
 # Table of Contents  <!-- omit in toc -->
 - [Introduction](#introduction)
-- [Instruction to Run the Application](#instruction-to-run-the-application)
+- [Instructions to Run the Application](#instructions-to-run-the-application)
 
 
 # Introduction
 
 This directory hosts a simple Java Rest application that simulates a CRM system. The application is used in various cloud infra demonstrations e.g. baked into a Docker container image or into a virtual machine image.
 
-# Instruction to Run the Application
+# Instructions to Run the Application
 
 First build the application:
 
