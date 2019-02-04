@@ -44,7 +44,7 @@ ext{
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("commons-codec:commons-codec:$rootProject.ext.commonsCodecVersion")
+    implementation("org.codehaus.groovy:groovy-all:$rootProject.ext.groovyVersion")    
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude group: 'junit.junit'
         exclude group: 'com.vaadin.external.google'
