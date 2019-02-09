@@ -24,8 +24,9 @@ repositories {
     mavenCentral()
 }
 
-sourceCompatibility = 1.10
-targetCompatibility = 1.10
+// I would like to use 1.10 or 1.11, but there is no Alpine for 1.10 or 1.11 yet.
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 ext{
     // Dependencies.
