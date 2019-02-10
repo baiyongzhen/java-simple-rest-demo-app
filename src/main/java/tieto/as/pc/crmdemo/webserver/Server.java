@@ -14,6 +14,7 @@ import tieto.as.pc.crmdemo.webserver.response.CustomerFailedResponseImpl;
 import tieto.as.pc.crmdemo.webserver.response.CustomerOkResponseImpl;
 import tieto.as.pc.crmdemo.webserver.response.Response;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -42,19 +43,56 @@ public class Server {
         logger.info("Starting application...");
     }
 
-    static class Info {
+    public static class Info implements Response {
         private static final String INFO_MSG = "Try /customer/<number>";
+        private final Map<String, Object> response = new HashMap<>();
 
-        /**
-         * Gets info as json. Used in testing.
-         *
-         * @return the info
-         */
-        public String getInfo() {
-            return INFO_MSG;
+        private Info() {
+            response.put("ret", "ok");
+            // Has to do like this or creates a Json conversion with extra layer.
+            response.put("msg", INFO_MSG);
+        }
+
+        public static Response createInfoOkResponse() {
+            return new Info();
+        }
+
+        @Override
+        public Map<String, Object> getRestView() {
+            return response;
+        }
+
+        @Override
+        public boolean isOk() {
+            return true;
         }
     }
 
+    // Used by AWS ECS health check.
+    public static class Health implements Response {
+        private static final String HEALTH_MSG = "Health ok";
+        private final Map<String, Object> response = new HashMap<>();
+
+        private Health() {
+            response.put("ret", "ok");
+            // Has to do like this or creates a Json conversion with extra layer.
+            response.put("msg", HEALTH_MSG);
+        }
+
+        public static Response createHealthOkResponse() {
+            return new Health();
+        }
+
+        @Override
+        public Map<String, Object> getRestView() {
+            return response;
+        }
+
+        @Override
+        public boolean isOk() {
+            return true;
+        }
+    }
 
     /**
      * Gets info.
@@ -62,11 +100,28 @@ public class Server {
      * @return the info.
      */
     @GetMapping(path = "/info")
-    public Info getInfo() {
+    public ResponseEntity<Map> getInfo() {
         logger.debug(CrmConsts.LOG_ENTER);
-        Info info = new Info();
+        Response response = Info.createInfoOkResponse();
         logger.debug(CrmConsts.LOG_EXIT);
-        return info;
+        HttpStatus httpStatus = response.isOk() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+        ResponseEntity<Map> responseEntity = new ResponseEntity<>(response.getRestView(), httpStatus);
+        return responseEntity;
+    }
+
+    /**
+     * Gets health.
+     *
+     * @return the health.
+     */
+    @GetMapping(path = "/health")
+    public ResponseEntity<Map> getHealth() {
+        logger.debug(CrmConsts.LOG_ENTER);
+        Response response = Health.createHealthOkResponse();
+        logger.debug(CrmConsts.LOG_EXIT);
+        HttpStatus httpStatus = response.isOk() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+        ResponseEntity<Map> responseEntity = new ResponseEntity<>(response.getRestView(), httpStatus);
+        return responseEntity;
     }
 
     /**

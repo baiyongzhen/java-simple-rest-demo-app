@@ -47,18 +47,32 @@ public class ServerTest {
     @Test
     void getInfoTest() throws Exception {
         logger.debug(CrmConsts.LOG_ENTER);
-        HashMap<String, String> expectedResult = new HashMap<>();
-
-        expectedResult.put("info", "Try /customer/<number>");
-        // We need to remove the stupid backslashes which JSONObject hard codes.
-        String expectedResultJson = new JSONObject(expectedResult).toString().replace("\\", "");
         MockHttpServletRequestBuilder builder = MockMvcRequestBuilders
                 .get("/info")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .accept(MediaType.APPLICATION_JSON_UTF8);
         MvcResult mvcResult = this.mockMvc.perform(builder)
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string(expectedResultJson))
+                .andExpect(jsonPath("$.ret").value("ok"))
+                .andExpect(jsonPath("$.msg").value("Try /customer/<number>"))
+                .andReturn();
+
+        logger.trace("Content: " + mvcResult.getResponse().getContentAsString());
+        logger.debug(CrmConsts.LOG_EXIT);
+    }
+
+
+    @Test
+    void getHealthTest() throws Exception {
+        logger.debug(CrmConsts.LOG_ENTER);
+        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders
+                .get("/health")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .accept(MediaType.APPLICATION_JSON_UTF8);
+        MvcResult mvcResult = this.mockMvc.perform(builder)
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(jsonPath("$.ret").value("ok"))
+                .andExpect(jsonPath("$.msg").value("Health ok"))
                 .andReturn();
 
         logger.trace("Content: " + mvcResult.getResponse().getContentAsString());
