@@ -6,17 +6,20 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo Nothing to do in the install phase...
+      - echo Install, skipped on `date +%Y-%m-%dT%H-%M-%S`
   pre_build:
     commands:
-      - echo Nothing to do in the pre_build phase...
+      - echo Pre-build, skipped on `date +%Y-%m-%dT%H-%M-%S`
   build:
     commands:
-      - echo Build started on `date`
+      - echo Build started on `date +%Y-%m-%dT%H-%M-%S`
       - ./clean-build.sh
+      - echo Listing build/libs directory...
+      - ls -lah build/libs
+      - echo Build completed on `date +%Y-%m-%dT%H-%M-%S`
   post_build:
     commands:
-      - echo Build completed on `date`
+      - echo Post-build, skipped on `date +%Y-%m-%dT%H-%M-%S`
 artifacts:
   files:
-    - build/libs/java-simple-rest-demo-app-0.1.0.jar
+    - build/libs/*

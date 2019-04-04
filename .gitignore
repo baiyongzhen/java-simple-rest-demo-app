@@ -10,11 +10,16 @@ setenv.sh
 *.iml
 out/
 
-# Eclipse
+# Eclipse.
 .project
 .classpath
 .settings
 
+# Proprietary AWS scripts.
+aws-scripts/codebuild_build.sh
+
+# Local CodeBuild artifacts
+local-artifacts/artifacts.zip
 
 # Log files.
 *.log
