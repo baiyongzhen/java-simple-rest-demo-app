@@ -22,7 +22,10 @@ phases:
       - echo Post-build on `date +%Y-%m-%dT%H-%M-%S`
       - mkdir target
       - cp build/libs/java-simple-rest-demo-app-0.1.0.jar target/app.jar
+cache:
+  paths:
+    - '/root/.m2/**/*'
+    - '/root/.gradle/caches/**/*'
 artifacts:
   files:
     - target/app.jar
-

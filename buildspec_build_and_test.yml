@@ -19,3 +19,7 @@ phases:
   post_build:
     commands:
       - echo Post-build, skipped on `date +%Y-%m-%dT%H-%M-%S`
+cache:
+  paths:
+    - '/root/.m2/**/*'
+    - '/root/.gradle/caches/**/*'
