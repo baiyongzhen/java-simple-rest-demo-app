@@ -1,0 +1,21 @@
+version: 0.2
+
+# AWS CodeBuild Build Spec.
+# Used in https://github.com/tieto-pc/aws-devops-intro-demo
+
+phases:
+  install:
+    commands:
+      - echo Install, skipped on `date +%Y-%m-%dT%H-%M-%S`
+  pre_build:
+    commands:
+      - echo Pre-build, skipped on `date +%Y-%m-%dT%H-%M-%S`
+  build:
+    commands:
+      - echo Build started on `date +%Y-%m-%dT%H-%M-%S`
+      - echo Running build and test phases
+      - ./gradlew test
+      - echo Build completed on `date +%Y-%m-%dT%H-%M-%S`
+  post_build:
+    commands:
+      - echo Post-build, skipped on `date +%Y-%m-%dT%H-%M-%S`

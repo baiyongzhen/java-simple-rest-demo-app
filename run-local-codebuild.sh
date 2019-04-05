@@ -7,4 +7,15 @@
 # - See: https://aws.amazon.com/blogs/devops/announcing-local-build-support-for-aws-codebuild/
 # - Download the script like: wget https://raw.githubusercontent.com/aws/aws-codebuild-docker-images/master/local_builds/codebuild_build.sh
 
-aws-scripts/codebuild_build.sh -i aws/codebuild/java:openjdk-8 -a local-artifacts -s .
+
+echo "***********************************************"
+echo "******** Running test phase *******************"
+echo "***********************************************"
+aws-scripts/codebuild_build.sh -i aws/codebuild/java:openjdk-8 -a local-artifacts -s . -b ../buildspec_build_and_test.yml
+
+echo "***********************************************"
+echo "******** Running package phase *******************"
+echo "***********************************************"
+aws-scripts/codebuild_build.sh -i aws/codebuild/java:openjdk-8 -a local-artifacts -s . -b ../buildspec_package.yml
+
+
