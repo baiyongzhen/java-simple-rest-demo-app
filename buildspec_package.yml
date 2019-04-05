@@ -15,7 +15,7 @@ phases:
     commands:
       - echo Build started on `date +%Y-%m-%dT%H-%M-%S`
       - echo Creating package...
-      - ./gradlew bootJar
+      - ./gradlew assemble
       - ls -lah build/libs
       - echo Create package
       - mkdir target
