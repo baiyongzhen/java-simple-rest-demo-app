@@ -14,11 +14,8 @@ phases:
     commands:
       - echo Build started on `date +%Y-%m-%dT%H-%M-%S`
       - echo Running build and test phases
-      - ./gradlew test
+      - ./gradlew clean test
       - echo Build completed on `date +%Y-%m-%dT%H-%M-%S`
-  post_build:
-    commands:
-      - echo Post-build, skipped on `date +%Y-%m-%dT%H-%M-%S`
 cache:
   paths:
     - '/root/.m2/**/*'
