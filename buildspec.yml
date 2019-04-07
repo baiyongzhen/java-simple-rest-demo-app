@@ -22,7 +22,7 @@ phases:
       - echo Creating package...
       - gradle bootJar
       - ls -lah build/libs
-      - cp build/libs/java-simple-rest-demo-app-0.1.0.jar target/app.jar
+      - cp build/libs/java-simple-rest-demo-app-0.1.1.jar target/app.jar
 # ... and then running tests.
       - gradle clean test
       - gradle -version
