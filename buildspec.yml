@@ -3,6 +3,9 @@ version: 0.2
 # AWS CodeBuild Build Spec.
 # Used in https://github.com/tieto-pc/aws-devops-intro-demo
 
+# NOTE: Using gradle in the Docker installation,
+# not the ./gradlew in the source repo.
+
 phases:
   install:
     commands:
@@ -10,22 +13,20 @@ phases:
   pre_build:
     commands:
       - echo Pre-build, skipped on `date +%Y-%m-%dT%H-%M-%S`
-#      - ./gradlew clean test
   build:
     commands:
       - echo Build started on `date +%Y-%m-%dT%H-%M-%S`
-      - echo Creating package...
-      - ./gradlew assemble
-      - ls -lah build/libs
-      - echo Create package
       - mkdir target
+# NOTE: For some reason clean test build does not create the app jar.
+# Therefore first building the jar.
+      - echo Creating package...
+      - gradle bootJar
+      - ls -lah build/libs
       - cp build/libs/java-simple-rest-demo-app-0.1.0.jar target/app.jar
+# ... and then running tests.
+      - gradle clean test
+      - gradle -version
       - echo Build completed on `date +%Y-%m-%dT%H-%M-%S`
-#  post_build:
-#    commands:
-#      - echo Post-build on `date +%Y-%m-%dT%H-%M-%S`
-#      - mkdir target
-#      - cp build/libs/java-simple-rest-demo-app-0.1.0.jar target/app.jar
 cache:
   paths:
     - '/root/.m2/**/*'

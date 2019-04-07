@@ -17,6 +17,7 @@ out/
 
 # Proprietary AWS scripts.
 aws-scripts/codebuild_build.sh
+codebuild_build.sh
 
 # Local CodeBuild artifacts
 local-artifacts/artifacts.zip
