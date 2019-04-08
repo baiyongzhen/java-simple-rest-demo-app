@@ -34,13 +34,13 @@ targetCompatibility = 1.8
 
 ext{
     // Dependencies.
-    // Honor Spring Boot 2.1.2 versions:
-    // https://docs.spring.io/spring-boot/docs/2.1.2.RELEASE/reference/html/appendix-dependency-versions.html
+    // Honor Spring Boot 2.1.4 versions:
+    // https://docs.spring.io/spring-boot/docs/2.1.4.RELEASE/reference/html/appendix-dependency-versions.html
     // Exception here. Spring Boot uses JUnit 4.12, but let's use latest JUnit5.
     // See: https://dzone.com/articles/spring-boot-2-with-junit-5-and-mockito-2-for-unit
-    groovyVersion = '2.5.5'
-    junitVersion = '5.3.0'
-    mockitJunitJupiterVersion = '2.18.3'
+    groovyVersion = '2.5.6'
+    junitVersion = '5.3.2'
+    mockitJunitJupiterVersion = '2.23.4'
     jsonPathVersion = '2.4.0'
     commonsCodecVersion = '1.11'
     gsonVersion = '2.8.5'
