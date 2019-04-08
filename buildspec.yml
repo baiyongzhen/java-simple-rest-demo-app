@@ -3,7 +3,7 @@ version: 0.2
 # AWS CodeBuild Build Spec.
 # Used in https://github.com/tieto-pc/aws-devops-intro-demo
 
-# NOTE: Using gradle in the Docker installation,
+# NOTE: Using gradle in the Build environment's Docker installation,
 # not the ./gradlew in the source repo.
 
 phases:

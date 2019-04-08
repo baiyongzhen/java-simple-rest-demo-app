@@ -1,21 +1,6 @@
 #!/bin/bash
 
-# NOTE:
-# - You have to create aws-scripts directory in the root of this project and download the codebuild_build.sh file there.
-# - The codebuild_build.sh is needed by script run-local-codebuild.sh (local CodeBuild tool).
-# - I'm not including the aws script in this repo just in case that no-one complains that I have proprietary components in our repo. You can download the script that should be in this directory from AWS:
-# - See: https://aws.amazon.com/blogs/devops/announcing-local-build-support-for-aws-codebuild/
-# - Download the script like: wget https://raw.githubusercontent.com/aws/aws-codebuild-docker-images/master/local_builds/codebuild_build.sh
+# See instructions in https://github.com/tieto-pc/aws-devops-intro-demo/blob/master/README.md#local-codebuild
 
-
-echo "***********************************************"
-echo "******** Running test phase *******************"
-echo "***********************************************"
-aws-scripts/codebuild_build.sh -i aws/codebuild/java:openjdk-8 -a local-artifacts -s . -b ../buildspec_build_and_test.yml
-
-echo "***********************************************"
-echo "******** Running package phase *******************"
-echo "***********************************************"
-aws-scripts/codebuild_build.sh -i aws/codebuild/java:openjdk-8 -a local-artifacts -s . -b ../buildspec_package.yml
-
+./codebuild_build.sh -i aws/codebuild/ubuntu:18 -a local-artifacts -b buildspec.yml
 
