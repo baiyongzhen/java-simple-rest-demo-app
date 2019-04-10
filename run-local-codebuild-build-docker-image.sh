@@ -11,5 +11,5 @@ fi
 
 MY_AWS_PROFILE=$1
 
-AWS_PROFILE=$MY_AWS_PROFILE ./codebuild_build.sh -c -i aws/codebuild/ubuntu:18 -a local-artifacts -b buildspec_build_docker_image.yml -e buildspec_build_docker_image_env_variables.txt
+AWS_PROFILE=$MY_AWS_PROFILE ./codebuild_build.sh -c -i aws/codebuild/ubuntu:18 -a codebuild/local-artifacts -b codebuild/buildspec_build_docker_image.yml -e codebuild/buildspec_build_docker_image_env_variables.txt
 
