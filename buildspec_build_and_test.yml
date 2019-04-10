@@ -33,4 +33,6 @@ cache:
     - '/root/.gradle/caches/**/*'
 artifacts:
   files:
+# NOTE: In local CodeBuild, see local-artifacts/artifacts.zip
+# In AWS see the CodePipeline configuration
     - target/app.jar

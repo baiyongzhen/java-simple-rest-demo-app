@@ -1,0 +1,12 @@
+# Environment variables for the local buildspec_build_docker_image.yml file.
+
+# NOTE: You have to deploy project https://github.com/tieto-pc/aws-ecs-fargate-demo
+# first since we are using it's ECR registry in this demonstration.
+
+MY_IMAGE_NAME=tieto-pc/java-devops-crm-demo
+MY_IMAGE_VERSION=0.1
+MY_ECR_REPO=TODO
+MY_AWS_REGION=TODO
+MY_AWS_ACCOUNT_ID=TODO
+MY_S3_APP_BUCKET=TODO
+
