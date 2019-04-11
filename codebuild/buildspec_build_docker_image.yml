@@ -21,7 +21,7 @@ phases:
     commands:
       - echo Pre-build, logging to ECR, skipped on `date +%Y-%m-%dT%H-%M-%S`
       - $(aws ecr get-login --no-include-email --region $MY_AWS_REGION)
-      - COMMIT_HASH_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - COMMIT_HASH_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-14)
 # In local CodeBuild the commit tag is not found
       - COMMIT_HASH_TAG=${COMMIT_HASH_TAG:=COMMIT_TAG_NOT_FOUND}
       - echo "COMMIT_HASH_TAG = $COMMIT_HASH_TAG"
