@@ -23,7 +23,7 @@ phases:
       - $(aws ecr get-login --no-include-email --region $MY_AWS_REGION)
       - COMMIT_HASH_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
 # In local CodeBuild the commit tag is not found
-      - COMMIT_HASH_TAG=${COMMIT_HASH:=COMMIT_TAG_NOT_FOUND}
+      - COMMIT_HASH_TAG=${COMMIT_HASH_TAG:=COMMIT_TAG_NOT_FOUND}
       - echo "COMMIT_HASH_TAG = $COMMIT_HASH_TAG"
       - LATEST_IMAGE_TAG="latest"
       - echo "LATEST_IMAGE_TAG = $LATEST_IMAGE_TAG"
