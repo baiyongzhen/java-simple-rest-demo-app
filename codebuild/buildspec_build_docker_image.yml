@@ -10,10 +10,7 @@ version: 0.2
 # - Local CodeBuild: see file: buildspec_build_docker_image_env_variables_template.txt => Create file buildspec_build_docker_image_env_variables.txt and provide missing parameter values.
 # - AWS CodeBuild: See deployment in https://github.com/tieto-pc/aws-devops-intro-demo
 
-env:
-  variables:
-    MY_IMAGE_NAME: "tieto-pc/java-devops-crm-demo"
-    MY_IMAGE_VERSION: "0.1"
+
 phases:
   install:
     commands:
@@ -21,9 +18,11 @@ phases:
   pre_build:
     commands:
       - echo Pre-build, logging to ECR, skipped on `date +%Y-%m-%dT%H-%M-%S`
-      - $(aws ecr get-login --no-include-email --region $MY_AWS_REGION)
+#      - $(aws ecr get-login --no-include-email --region $MY_AWS_REGION)
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - echo "COMMIT_HASH = $COMMIT_HASH"
       - LATEST_IMAGE_TAG=${COMMIT_HASH:=latest}
+      - echo "LATEST_IMAGE_TAG = $LATEST_IMAGE_TAG"
       - echo Pre-build completed on `date +%Y-%m-%dT%H-%M-%S`
   build:
     commands:
@@ -31,16 +30,16 @@ phases:
       - cd docker
       - mkdir image/resources
       - echo Getting app jar from S3...
-      - aws s3 cp s3://$MY_S3_APP_BUCKET/app-jar/target/app.jar image/.
-      - cp -r ./resources/* image/resources/.
-      - cd image
-      - echo "Building docker image $MY_IMAGE_NAME:$LATEST_IMAGE_TAG ..."
-      - docker build -f Dockerfile -t $MY_IMAGE_NAME:$LATEST_IMAGE_TAG .
-      - docker tag $MY_IMAGE_NAME:$LATEST_IMAGE_TAG $MY_AWS_ACCOUNT_ID.dkr.ecr.$MY_AWS_REGION.amazonaws.com/$MY_ECR_REPO:$LATEST_IMAGE_TAG
+#      - aws s3 cp s3://$MY_S3_APP_BUCKET/app-jar/target/app.jar image/.
+#      - cp -r ./resources/* image/resources/.
+#      - cd image
+#      - echo "Building docker image $MY_IMAGE_NAME:$LATEST_IMAGE_TAG ..."
+#      - docker build -f Dockerfile -t $MY_IMAGE_NAME:$LATEST_IMAGE_TAG .
+#      - docker tag $MY_IMAGE_NAME:$LATEST_IMAGE_TAG $MY_AWS_ACCOUNT_ID.dkr.ecr.$MY_AWS_REGION.amazonaws.com/$MY_ECR_REPO:$LATEST_IMAGE_TAG
       - echo Build completed on `date +%Y-%m-%dT%H-%M-%S`
   post_build:
     commands:
       - echo Post-build started on `date +%Y-%m-%dT%H-%M-%S`
-      - echo Pushing the Docker image...
-      - docker push $MY_AWS_ACCOUNT_ID.dkr.ecr.$MY_AWS_REGION.amazonaws.com/$MY_ECR_REPO:$LATEST_IMAGE_TAG
-      - echo Post-build completed on `date +%Y-%m-%dT%H-%M-%S`
+#      - echo Pushing the Docker image...
+#      - docker push $MY_AWS_ACCOUNT_ID.dkr.ecr.$MY_AWS_REGION.amazonaws.com/$MY_ECR_REPO:$LATEST_IMAGE_TAG
+#      - echo Post-build completed on `date +%Y-%m-%dT%H-%M-%S`
