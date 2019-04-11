@@ -4,6 +4,7 @@ version: 0.2
 # Used in https://github.com/tieto-pc/aws-devops-intro-demo
 
 # Based on: https://docs.aws.amazon.com/codebuild/latest/userguide/sample-docker.html
+# and https://aws.amazon.com/blogs/devops/build-a-continuous-delivery-pipeline-for-your-container-images-with-amazon-ecr-as-source/
 
 # Environment variables:
 # - Local CodeBuild: see file: buildspec_build_docker_image_env_variables_template.txt => Create file buildspec_build_docker_image_env_variables.txt and provide missing parameter values.
@@ -21,6 +22,8 @@ phases:
     commands:
       - echo Pre-build, logging to ECR, skipped on `date +%Y-%m-%dT%H-%M-%S`
       - $(aws ecr get-login --no-include-email --region $MY_AWS_REGION)
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - LATEST_IMAGE_TAG=${COMMIT_HASH:=latest}
       - echo Pre-build completed on `date +%Y-%m-%dT%H-%M-%S`
   build:
     commands:
@@ -31,13 +34,13 @@ phases:
       - aws s3 cp s3://$MY_S3_APP_BUCKET/app-jar/target/app.jar image/.
       - cp -r ./resources/* image/resources/.
       - cd image
-      - echo "Building docker image $MY_IMAGE_NAME:$MY_IMAGE_VERSION ..."
-      - docker build -f Dockerfile -t $MY_IMAGE_NAME:$MY_IMAGE_VERSION .
-      - docker tag $MY_IMAGE_NAME:$MY_IMAGE_VERSION $MY_AWS_ACCOUNT_ID.dkr.ecr.$MY_AWS_REGION.amazonaws.com/$MY_ECR_REPO:$MY_IMAGE_VERSION
+      - echo "Building docker image $MY_IMAGE_NAME:$LATEST_IMAGE_TAG ..."
+      - docker build -f Dockerfile -t $MY_IMAGE_NAME:$LATEST_IMAGE_TAG .
+      - docker tag $MY_IMAGE_NAME:$LATEST_IMAGE_TAG $MY_AWS_ACCOUNT_ID.dkr.ecr.$MY_AWS_REGION.amazonaws.com/$MY_ECR_REPO:$LATEST_IMAGE_TAG
       - echo Build completed on `date +%Y-%m-%dT%H-%M-%S`
   post_build:
     commands:
       - echo Post-build started on `date +%Y-%m-%dT%H-%M-%S`
       - echo Pushing the Docker image...
-      - docker push $MY_AWS_ACCOUNT_ID.dkr.ecr.$MY_AWS_REGION.amazonaws.com/$MY_ECR_REPO:$MY_IMAGE_VERSION
+      - docker push $MY_AWS_ACCOUNT_ID.dkr.ecr.$MY_AWS_REGION.amazonaws.com/$MY_ECR_REPO:$LATEST_IMAGE_TAG
       - echo Post-build completed on `date +%Y-%m-%dT%H-%M-%S`
