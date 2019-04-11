@@ -12,6 +12,7 @@
 This directory hosts a simple Java Rest application that simulates a CRM system. The application is used in various cloud infra demonstrations e.g. baked into a Docker container image or into a virtual machine image.
 
 
+
 # Instructions to Run the Application
 
 First build the application:
